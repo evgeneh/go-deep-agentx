@@ -1,4 +1,4 @@
-module github.com/posteo/go-agentx
+module github.com/evgeneh/go-deep-agentx
 
 go 1.13
 
