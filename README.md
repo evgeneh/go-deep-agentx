@@ -24,9 +24,9 @@ import (
     "net"
     "time"
 
-    "github.com/posteo/go-agentx"
-    "github.com/posteo/go-agentx/pdu"
-    "github.com/posteo/go-agentx/value"
+    "github.com/evgeneh/go-deep-agentx"
+    "github.com/evgeneh/go-deep-agentx/pdu"
+    "github.com/evgeneh/go-deep-agentx/value"
 )
 
 func main() {

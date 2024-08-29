@@ -10,8 +10,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/posteo/go-agentx/pdu"
-	"github.com/posteo/go-agentx/value"
+	"github.com/evgeneh/go-deep-agentx/pdu"
+	"github.com/evgeneh/go-deep-agentx/value"
 )
 
 // Session defines an agentx session.
