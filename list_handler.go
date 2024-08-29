@@ -26,7 +26,8 @@ func (l *ListHandler) Add(oid string) *ListItem {
 	}
 
 	l.oids = append(l.oids, oid)
-	l.oids.Sort()
+	value.SortOIDsAsStrings(l.oids)
+	// l.oids.Sort()
 	item := &ListItem{}
 	l.items[oid] = item
 	return item

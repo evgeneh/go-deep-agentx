@@ -59,12 +59,29 @@ func TestSortOIDs(t *testing.T) {
 	oid1 := value.OID{1, 3, 6, 1}
 	oid2 := value.OID{1, 3, 6, 5, 7}
 	oid3 := value.OID{1, 3, 6, 1, 12}
-	oid4 := value.OID{1, 3, 6, 5}
+	oid4 := value.OID{1, 3, 6, 1, 2}
+	oid5 := value.OID{1, 3, 6, 5}
 
-	oidList = append(oidList, oid1, oid2, oid3, oid4)
+	oidList = append(oidList, oid1, oid2, oid3, oid4, oid5)
 	value.SortOIDs(oidList)
 
 	var expect []value.OID
-	expect = append(expect, oid1, oid3, oid4, oid2)
+	expect = append(expect, oid1, oid4, oid3, oid5, oid2)
+	assert.Equal(t, expect, oidList)
+}
+
+func TestSortOIDAsStr(t *testing.T) {
+	var oidList []string
+	oid1 := "1.3.6.1"    // value.OID{1, 3, 6, 1}
+	oid2 := "1.3.6.5.7"  // value.OID{1, 3, 6, 5, 7}
+	oid3 := "1.3.6.1.12" //value.OID{1, 3, 6, 1, 12}
+	oid4 := "1.3.6.1.2"  // value.OID{1, 3, 6, 1, 2}
+	oid5 := "1.3.6.5"    // value.OID{1, 3, 6, 5}
+
+	oidList = append(oidList, oid1, oid2, oid3, oid4, oid5)
+	value.SortOIDsAsStrings(oidList)
+
+	var expect []string
+	expect = append(expect, oid1, oid4, oid3, oid5, oid2)
 	assert.Equal(t, expect, oidList)
 }

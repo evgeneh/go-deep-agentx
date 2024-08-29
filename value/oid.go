@@ -92,6 +92,15 @@ func SortOIDs(oids []OID) {
 	})
 }
 
+// SortOIDsAsStrings performs sorting of the OID list as strings.
+func SortOIDsAsStrings(oids []string) {
+	sort.Slice(oids, func(i, j int) bool {
+		oidI, _ := ParseOID(oids[i])
+		oidJ, _ := ParseOID(oids[j])
+		return CompareOIDs(oidI, oidJ) == -1
+	})
+}
+
 func (o OID) String() string {
 	var parts []string
 
