@@ -51,11 +51,10 @@ func (l *ListHandler) GetNext(from value.OID, includeFrom bool, to value.OID) (v
 	if l.items == nil {
 		return nil, pdu.VariableTypeNoSuchObject, nil, nil
 	}
-
-	fromOID, toOID := from.String(), to.String()
 	for _, oid := range l.oids {
-		if oidWithin(oid, fromOID, includeFrom, toOID) {
-			return l.Get(value.MustParseOID(oid))
+		oidItem := value.MustParseOID(oid)
+		if oidWithinNotStrings(oidItem, from, includeFrom, to) {
+			return l.Get(oidItem)
 		}
 	}
 
@@ -67,6 +66,15 @@ func oidWithin(oid string, from string, includeFrom bool, to string) bool {
 
 	fromCompare := bytes.Compare(fromBytes, oidBytes)
 	toCompare := bytes.Compare(toBytes, oidBytes)
+
+	return (fromCompare == -1 || (fromCompare == 0 && includeFrom)) && (toCompare == 1)
+}
+
+// Check oid within for OID entries
+func oidWithinNotStrings(oid value.OID, from value.OID, includeFrom bool, to value.OID) bool {
+
+	fromCompare := value.CompareOIDs(from, oid)
+	toCompare := value.CompareOIDs(to, oid)
 
 	return (fromCompare == -1 || (fromCompare == 0 && includeFrom)) && (toCompare == 1)
 }
